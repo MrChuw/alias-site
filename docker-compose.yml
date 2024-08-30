@@ -1,0 +1,8 @@
+services:
+  alias_table:
+    build: .
+    ports:
+      - "1234:80"
+    volumes:
+      - ./db:/app/db
+      - ./templates:/app/templates
