@@ -7,7 +7,6 @@ COPY . .
 COPY templates/ /app/templates/
 
 RUN go mod download
-RUN go build -o main
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-s" -o main
 
 ENTRYPOINT ["/app/main"]
