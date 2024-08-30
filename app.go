@@ -81,6 +81,7 @@ func main() {
 
     // Serve static files
     fs := http.FileServer(http.Dir("templates"))
+    r.Handle("/favicon.ico", http.FileServer(http.Dir("templates")))
     r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
 
     r.HandleFunc("/submit", submitTable).Methods(http.MethodPost)
