@@ -1,8 +1,16 @@
+
 services:
-  alias_table:
-    build: .
+  Alias_site:
+    image: python:3.12
+    working_dir: /app
     ports:
-      - "1234:80"
+      - 5454:5454
+    command: >
+      /bin/bash -c "pip install -q -r requirements.txt && python main.py"
     volumes:
-      - ./db:/app/db
-      - ./templates:/app/templates
+      - .:/app
+    restart: unless-stopped
+
+
+
+

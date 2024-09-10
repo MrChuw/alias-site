@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <title>{{ .TableName }}</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <title>{{ TableName }}</title>
 </head>
 <body>
-    <div id="table-container">{{ .Content }}</div>
-    <script src="/static/script.js" data-table-name="{{ .TableName }}"></script>
+    <div id="table-container">{{ Content }}</div>
+    <script src="/static/script.js" data-table-name="{{ TableName }}"></script>
 </body>
 </html>
 
