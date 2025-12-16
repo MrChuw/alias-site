@@ -10,8 +10,10 @@ from custom_logging import CustomizeLogger
 from pathlib import Path
 import uvicorn
 import logging
+from dotenv import load_dotenv
+import os
 
-
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 config_path = Path(__file__).with_name("logging_config.json")
@@ -19,6 +21,9 @@ app = FastAPI(debug=False)
 app.logger = CustomizeLogger.make_logger(config_path)
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+templates.env.globals["analytics_url"] = os.getenv("ANALYTICS_URL")
+templates.env.globals["analytics_uuid"] = os.getenv("ANALYTICS_UUID")
 
 
 @app.get("/", response_class=HTMLResponse)
