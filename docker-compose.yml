@@ -6,6 +6,9 @@ services:
     working_dir: /app
     #ports:
     #  - "${PORT:-12836}:5454
+    environment:
+      - ANALYTICS_URL=${ANALYTICS_URL:-}
+      - ANALYTICS_UUID=${ANALYTICS_UUID:-}
     command: >
       /bin/bash -c "pip install -q -r requirements.txt && python main.py"
     volumes:
