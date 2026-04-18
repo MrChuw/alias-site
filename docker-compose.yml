@@ -2,15 +2,21 @@
 services:
   Alias_site:
     image: python:3.12
+    container_name: Alias_site
     working_dir: /app
-    ports:
-      - 5454:5454
+    #ports:
+    #  - "${PORT:-12836}:5454
     command: >
       /bin/bash -c "pip install -q -r requirements.txt && python main.py"
     volumes:
       - .:/app
     restart: unless-stopped
+    networks:
+      - caddy
 
+networks:
+  caddy:
+    external: true
 
 
 
