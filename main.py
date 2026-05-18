@@ -28,7 +28,7 @@ templates.env.globals["analytics_uuid"] = os.getenv("ANALYTICS_UUID")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(name="index.html", context={"request": request}, request=request)
 
 
 @app.get("/favicon.ico")
@@ -53,9 +53,11 @@ async def view_table(request: Request, table_id: str):
     if not table:
         raise HTTPException(status_code=404, detail="Alias not found")
 
-    return templates.TemplateResponse("table.html",
-                                      {"request": request, "Content": table.content, "TableName": table.table_name}
-                                      )
+    return templates.TemplateResponse(
+        name="table.html", 
+        context={"request": request, "Content": table.content, "TableName": table.table_name},
+        request=request
+    )
 
 
 
